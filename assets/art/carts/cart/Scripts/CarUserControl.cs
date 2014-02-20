@@ -5,6 +5,7 @@ public class CarUserControl : MonoBehaviour
 {
     private CarController car;  // the car controller we want to use
     
+	public bool isSingleView = true; //true means only single person, false means split screen
 
     void Awake ()
     {
@@ -23,6 +24,13 @@ public class CarUserControl : MonoBehaviour
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
 #endif
-        car.Move(h,v);
+
+		if ( isSingleView)
+        	car.Move(h,v);
     }
+
+	public void directionUpdate( Vector2 direction)
+	{
+		car.Move ( direction.x, direction.y);
+	}
 }
